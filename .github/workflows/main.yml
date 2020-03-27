@@ -12,11 +12,11 @@ jobs:
         uses: actions/checkout@v2
 #      - run: git config --local --list
 
-#      - name: Setup GIT
-#        run: |
+      - name: Setup GIT
+        run: |
 #          git switch -c master
-#          git config user.email "action@github.com"
-#          git config user.name "$GITHUB_ACTOR"
+          git config user.email "action@github.com"
+          git config user.name "$GITHUB_ACTOR"
 
       - name: Bump version
         #        env:
