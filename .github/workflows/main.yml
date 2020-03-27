@@ -21,7 +21,7 @@ jobs:
           git switch -c $GITHUB_HEAD_REF
           git config user.email "action@github.com"
           git config user.name "$GITHUB_ACTOR"
-          git pull
+          git pull $GITHUB_HEAD_REF
 
       - name: Bump version
         #        env:
