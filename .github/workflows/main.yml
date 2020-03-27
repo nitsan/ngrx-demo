@@ -14,7 +14,11 @@ jobs:
 
       - name: Setup GIT
         run: |
-          git switch -c master
+          echo "GITHUB_REF is: ${GITHUB_REF}"
+          echo "GITHUB_HEAD_REF is: ${GITHUB_HEAD_REF}"
+          echo "GITHUB_BASE_REF is: ${GITHUB_BASE_REF}"
+          echo "GITHUB_WORKSPACE is: ${GITHUB_WORKSPACE}"
+          git switch -c $GITHUB_HEAD_REF
           git config user.email "action@github.com"
           git config user.name "$GITHUB_ACTOR"
 
