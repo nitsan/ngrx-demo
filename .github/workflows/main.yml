@@ -10,7 +10,7 @@ jobs:
     steps:
       - name: "Checkout source code"
         uses: actions/checkout@v2
-#      - run: git config --local --list
+      - run: git config --local --list
 
       - name: Setup GIT
         run: |
