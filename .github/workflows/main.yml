@@ -18,14 +18,13 @@ jobs:
           echo "GITHUB_HEAD_REF is: ${GITHUB_HEAD_REF}"
           echo "GITHUB_BASE_REF is: ${GITHUB_BASE_REF}"
           echo "GITHUB_WORKSPACE is: ${GITHUB_WORKSPACE}"
-          git switch -c $GITHUB_HEAD_REF
           git config user.email "action@github.com"
           git config user.name "$GITHUB_ACTOR"
-          git pull $GITHUB_HEAD_REF
 
       - name: Bump version
         #        env:
         #          GITHUB_TOKEN: ${{ secrets.VERSION_BUMP }}
         run: |
+          git switch -c $GITHUB_HEAD_REF
           npm version patch
           git push "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY"
