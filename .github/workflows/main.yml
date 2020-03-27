@@ -10,8 +10,6 @@ jobs:
     steps:
       - name: "Checkout source code"
         uses: actions/checkout@v2
-      - run: |
-          git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
 #      - run: git config --local --list
 
       - name: Setup GIT
@@ -29,4 +27,4 @@ jobs:
         #          GITHUB_TOKEN: ${{ secrets.VERSION_BUMP }}
         run: |
           npm version patch
-          git push "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY"
+          git push --force "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY"
