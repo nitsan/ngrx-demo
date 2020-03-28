@@ -22,5 +22,5 @@ jobs:
 
       - name: "Bump version"
         run: |
-          npm version patch
+          npm version patch -m "ci: version bump to v%s"
           git push "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY"
