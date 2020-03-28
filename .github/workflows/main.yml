@@ -16,7 +16,7 @@ jobs:
       - name: "Setup GIT"
         run: |
           echo "Setting email to: ${GITHUB_EMAIL}"
-          echo "Setting user to: ${$GITHUB_ACTOR}"
+          echo "Setting user to: ${GITHUB_ACTOR}"
           git switch -c $GITHUB_HEAD_REF
           git config user.email "$GITHUB_EMAIL"
           git config user.name "$GITHUB_ACTOR"
