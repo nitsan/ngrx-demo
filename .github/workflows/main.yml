@@ -10,26 +10,18 @@ jobs:
     steps:
       - name: "Checkout source code"
         uses: actions/checkout@v2
-#      - run: git config --local --list
-
-
-      - name: Get Email
+      - name: "Get Email"
         run: |
           echo ::set-env name=GITHUB_EMAIL::$(git --no-pager show -s --format=\'%ae\')
-      - name: Setup GIT
+      - name: "Setup GIT"
         run: |
-          echo "GITHUB_REF is: ${GITHUB_REF}"
-          echo "GITHUB_HEAD_REF is: ${GITHUB_HEAD_REF}"
-          echo "GITHUB_BASE_REF is: ${GITHUB_BASE_REF}"
-          echo "GITHUB_WORKSPACE is: ${GITHUB_WORKSPACE}"
-          echo "GITHUB_EMAIL is: ${GITHUB_EMAIL}"
+          echo "Setting email to: ${GITHUB_EMAIL}"
+          echo "Setting user to: ${$GITHUB_ACTOR}"
           git switch -c $GITHUB_HEAD_REF
           git config user.email "$GITHUB_EMAIL"
           git config user.name "$GITHUB_ACTOR"
 
-      - name: Bump version
-        #        env:
-        #          GITHUB_TOKEN: ${{ secrets.VERSION_BUMP }}
+      - name: "Bump version"
         run: |
           npm version patch
           git push --force "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY"
