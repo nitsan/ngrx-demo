@@ -9,12 +9,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: "Checkout source code"
-        uses: actions/checkout@v1
-        with:
-          ref: ${{ github.ref }}
-      - name: Automated Version Bump
-        uses: phips28/gh-action-bump-version@v5.0.16
-        with:
-          tag-prefix: ''
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: actions/checkout@v2
+#      - run: git config --local --list
+
+      - name: Setup GIT
+        run: |
+          echo "GITHUB_REF is: ${GITHUB_REF}"
+          echo "GITHUB_HEAD_REF is: ${GITHUB_HEAD_REF}"
+          echo "GITHUB_BASE_REF is: ${GITHUB_BASE_REF}"
+          echo "GITHUB_WORKSPACE is: ${GITHUB_WORKSPACE}"
+          git --no-pager show -s --format='%ae'
+          git switch -c $GITHUB_HEAD_REF
+          git config user.email "action@github.com"
+          git config user.name "$GITHUB_ACTOR"
+
+      - name: Bump version
+        #        env:
+        #          GITHUB_TOKEN: ${{ secrets.VERSION_BUMP }}
+        run: |
+          npm version patch
+          git push --force "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY"
