@@ -13,11 +13,14 @@ jobs:
 #      - run: git config --local --list
 
       - name: Setup GIT
+        env:
+          GITHUB_EMAIL: ${{ git --no-pager show -s --format='%ae' }}
         run: |
           echo "GITHUB_REF is: ${GITHUB_REF}"
           echo "GITHUB_HEAD_REF is: ${GITHUB_HEAD_REF}"
           echo "GITHUB_BASE_REF is: ${GITHUB_BASE_REF}"
           echo "GITHUB_WORKSPACE is: ${GITHUB_WORKSPACE}"
+          echo "GITHUB_WORKSPACE is: ${GITHUB_EMAIL}"
           git switch -c $GITHUB_HEAD_REF
           git config user.email "action@github.com"
           git config user.name "$GITHUB_ACTOR"
