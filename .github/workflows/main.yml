@@ -1,7 +1,7 @@
 name: Bump version
 
 on:
-  pull_request:
+  push:
     branches:
       - master
 jobs:
@@ -17,11 +17,11 @@ jobs:
         run: |
           echo "Setting email to: ${GITHUB_EMAIL}"
           echo "Setting user to: ${GITHUB_ACTOR}"
-          git switch -c $GITHUB_HEAD_REF
+          git switch -c master
           git config user.email "$GITHUB_EMAIL"
           git config user.name "$GITHUB_ACTOR"
 
       - name: "Bump version"
         run: |
           npm version patch
-          git push --force "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY"
+          git push "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY"
