@@ -20,7 +20,7 @@ jobs:
           git config user.email "$GITHUB_EMAIL"
           git config user.name "$GITHUB_ACTOR"
 
-      - name: "Bump version"
+      - name: "Bump version2"
         run: |
           npm version patch -m "ci: version bump to v%s"
           git push "https://nitsan:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY"
