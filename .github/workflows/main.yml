@@ -12,13 +12,8 @@ jobs:
     steps:
       - name: "Checkout source code"
         uses: actions/checkout@v2
-      - name: "cat package.json"
-        run: cat ./package.json
-      - name: "Automated Version Bump"
-        uses: phips28/gh-action-bump-version@master
+      - uses: tool3/bump@v1
         with:
-          tag-prefix: ''
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: "cat package.json"
-        run: cat ./package.json
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          user: 'Adam'
+          email: 'adam@gmail.com'
