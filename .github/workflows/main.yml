@@ -25,4 +25,4 @@ jobs:
           npm version patch -m "ci: version bump to v%s"
           git push "https://nitsan:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY"
         env:
-          GITHUB_TOKEN: ${{ secrets.VERSION_BUMP }}
+          GITHUB_TOKEN: ${{ secrets.PUBLIC_KEY }}
