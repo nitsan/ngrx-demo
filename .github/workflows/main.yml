@@ -20,7 +20,7 @@ jobs:
           git config user.email "$GITHUB_EMAIL"
           git config user.name "$GITHUB_ACTOR"
 
-      - name: "Bump version"
+      - name: "Bump version2"
         run: |
           mkdir ~/.ssh
           echo "${{ secrets.VERSION_BUMP }}" > ~/.ssh/id_rsa
