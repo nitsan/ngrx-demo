@@ -26,4 +26,4 @@ jobs:
           echo "${{ secrets.VERSION_BUMP }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           npm version patch -m "ci: version bump to v%s"
-          git push "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY"
+          git push -f "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY"
