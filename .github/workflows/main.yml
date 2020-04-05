@@ -23,6 +23,6 @@ jobs:
       - name: "Bump version"
         run: |
           npm version patch -m "ci: version bump to v%s"
-          'ssh -i $GITHUB_TOKEN' git push origin master
+          git push "https://nitsan:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY"
         env:
           GITHUB_TOKEN: ${{ secrets.VERSION_BUMP }}
