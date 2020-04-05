@@ -10,15 +10,6 @@ jobs:
     steps:
       - name: "Checkout source code"
         uses: actions/checkout@v2
-      - name: "Get Email"
-        run: |
-          echo ::set-env name=GITHUB_EMAIL::$(git --no-pager show -s --format=\'%ae\')
-      - name: "Setup GIT"
-        run: |
-          echo "Setting email to: ${GITHUB_EMAIL}"
-          echo "Setting user to: ${GITHUB_ACTOR}"
-          git config user.email "$GITHUB_EMAIL"
-          git config user.name "$GITHUB_ACTOR"
 
       - name: "Bump version"
         run: |
