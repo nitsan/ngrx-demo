@@ -15,7 +15,6 @@ jobs:
           echo ::set-env name=GITHUB_EMAIL::$(git --no-pager show -s --format=\'%ae\')
       - name: "Setup GIT"
         run: |
-          git switch -c master
           echo "Setting email to: ${GITHUB_EMAIL}"
           echo "Setting user to: ${GITHUB_ACTOR}"
           git config user.email "$GITHUB_EMAIL"
