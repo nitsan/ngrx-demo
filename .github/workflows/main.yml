@@ -22,7 +22,7 @@ jobs:
 
       - name: "Bump version"
         env:
-          GITHUB_TOKEN: ${{secrets.VERSION_BUMP}}
+          GITHUB_TOKEN: ${{secrets.PUBLIC_KEY}}
         run: |
           npm version patch -m "ci: version bump to v%s"
-          git push -f "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY"
+          git push "git@github.com:nitsan/ngrx-demo.git"
