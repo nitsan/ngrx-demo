@@ -21,6 +21,8 @@ jobs:
           git config user.name "$GITHUB_ACTOR"
 
       - name: "Bump version 3"
+        env:
+          VERSION_BUMP: ${{secrets.VERSION_BUMP2}}
         run: |
           npm version patch -m "ci: version bump to v%s"
-          git push --follow-tags "https://nitsan:${secrets.VERSION_BUMP2}@github.com/$GITHUB_REPOSITORY"
+          git push --follow-tags "https://nitsan:${VERSION_BUMP}@github.com/$GITHUB_REPOSITORY"
