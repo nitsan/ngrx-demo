@@ -22,7 +22,7 @@ jobs:
 
       - name: "Bump version 3"
         env:
-          GITHUB_TOKEN: ${{secrets.VERSION_BUMP2}}
+          VERSION_BUMP: ${{secrets.VERSION_BUMP2}}
         run: |
           npm version patch -m "ci: version bump to v%s"
-          git push --force "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY"
+          git push --force "https://$GITHUB_ACTOR:$VERSION_BUMP@github.com/$GITHUB_REPOSITORY"
