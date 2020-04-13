@@ -25,4 +25,4 @@ jobs:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
         run: |
           npm version patch -m "ci: version bump to v%s"
-          git push --force "git@github.com:nitsan/ngrx-demo.git"
+          git push --force "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY"
