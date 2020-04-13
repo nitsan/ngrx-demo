@@ -25,4 +25,4 @@ jobs:
           VERSION_BUMP: ${{secrets.VERSION_BUMP2}}
         run: |
           npm version patch -m "ci: version bump to v%s"
-          git push --tags "https://nitsan:${VERSION_BUMP}@github.com/$GITHUB_REPOSITORY"
+          git push --follow-tags "https://nitsan:${VERSION_BUMP}@github.com/$GITHUB_REPOSITORY"
