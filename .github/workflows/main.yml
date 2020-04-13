@@ -20,7 +20,7 @@ jobs:
           git config user.email "$GITHUB_EMAIL"
           git config user.name "$GITHUB_ACTOR"
 
-      - name: "Bump version 3"
+      - name: "Bump version"
         env:
           VERSION_BUMP: ${{secrets.VERSION_BUMP2}}
         run: |
