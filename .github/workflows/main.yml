@@ -9,20 +9,29 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: "Checkout source code"
-        uses: actions/checkout@v2
-      - name: "Get Email"
+        uses: actions/checkout@v1
+      - name: "Get email"
         run: |
           echo ::set-env name=GITHUB_EMAIL::$(git --no-pager show -s --format=\'%ae\')
+      - name: "Get commit message"
+        run: |
+          echo ::set-env name=GITHUB_COMMIT_MESSAGE::$(git log -1 --pretty=%B)
       - name: "Setup GIT"
         run: |
           echo "Setting email to: ${GITHUB_EMAIL}"
           echo "Setting user to: ${GITHUB_ACTOR}"
+          echo "Commit message: ${GITHUB_COMMIT_MESSAGE}"
           git config user.email "$GITHUB_EMAIL"
           git config user.name "$GITHUB_ACTOR"
 
+      - name: "Checkout branch"
+        run: |
+          git checkout master
+
       - name: "Bump version"
-        env:
-          VERSION_BUMP: ${{secrets.VERSION_BUMP2}}
+        if: contains(env.GITHUB_COMMIT_MESSAGE, 'version bump to') == false
         run: |
           npm version patch -m "ci: version bump to v%s"
-          git push --follow-tags "https://nitsan:${VERSION_BUMP}@github.com/$GITHUB_REPOSITORY"
+          git push "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY"
+        env:
+          GITHUB_TOKEN: ${{ secrets.VERSION_BUMP2 }}
